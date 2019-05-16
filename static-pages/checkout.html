@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../styles/checkout.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="heading">
+        <h1>Checkout</h1>
+      </div>
+      <div id="information">
+        <hr />
+        <div class="flex-container flex-row" id="billing">
+          <div class="form">
+            <h3>Delivery Information</h3>
+            <form>
+              <div id="names" class="flex-container flex-row">
+                <div>
+                  First Name<br />
+                  <input type="text" id="firstName" class="input-text" />
+                </div>
+                <div>
+                  Last Name<br />
+                  <input type="text" id="firstName" class="input-text" />
+                </div>
+              </div>
+              <br />
+              <div>
+                Email<br />
+                <input
+                  type="text"
+                  class="input-text"
+                  placeholder="someone@something.com"
+                />
+              </div>
+              <div>
+                Address<br />
+                <input type="text" class="input-text" placeholder="Address" />
+              </div>
+              <div>
+                Address 2<br />
+                <input type="text" class="input-text" placeholder="Address 2" />
+              </div>
+              <div id="location" class="flex-container flex-row">
+                <div>
+                  Country<br />
+                  <input
+                    type="text"
+                    class="input-text"
+                    placeholder="Username"
+                  />
+                </div>
+                <div>
+                  State<br />
+                  <input type="text" class="input-text" placeholder="State" />
+                </div>
+                <div>
+                  Zip<br />
+                  <input type="text" class="input-text" placeholder="Zip" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="card-info">
+            <form>
+              <h3>Payment</h3>
+              <input type="radio" /> Credit Card<br />
+              <input type="radio" /> Debit Card<br />
+              <input type="radio" /> PayPal<br />
+              <br />
+              <div>
+                Cardholder Name<br />
+                <input type="text" class="input-text" />
+              </div>
+              <div>
+                Card Number<br />
+                <input type="text" class="input-text" />
+              </div>
+              <div>
+                Expiration Date<br />
+                <input type="text" class="input-text" placeholder="MM/YY" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="checkout">
+        <div class="flex-container flex-column">
+          <ul>
+            <li id="menu-item" class="justify-space-between">
+              <div>
+                <h6>Menu Item Name</h6>
+                <small>Item Description</small>
+              </div>
+              $20
+            </li>
+            <li id="menu-item" class="justify-space-between">
+              <div>
+                <h6>HST (13%):</h6>
+              </div>
+              $2.60
+            </li>
+            <li id="menu-item" class="justify-space-between">
+              <div>
+                <h6>Total (CAD)</h6>
+              </div>
+              $22.60
+            </li>
+          </ul>
+          <button type="submit" class="submit-button">Submit</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
