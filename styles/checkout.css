@@ -61,7 +61,11 @@ li {
   color: #fff;
   font-size: 1.25rem;
   line-height: 1.5;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  cursor: pointer;
+}
+.submit-button:hover {
+  border-radius: 50px;
+  transition: all 1s ease 0s;
 }
 .total {
   border: 2px solid #28a745!important;
