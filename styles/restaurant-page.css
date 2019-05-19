@@ -6,14 +6,27 @@ body{
 }
 
 #container{
-
+padding: 0;
 }
 
 h1{
-  font-size: 50;
-  margin-top:50;
+  margin: 50 auto;
+  font-size: 80;
+  border-style: double;
+  border-width: 15;
+  border-radius:3rem;
+  height: 100;
+  width: 600;
+}
+
+h2{
+font-size:30;
 }
 
 #restaurants{
-  
+
+}
+
+p{
+  font-size: 20;
 }
