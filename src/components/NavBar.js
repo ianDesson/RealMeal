@@ -1,15 +1,18 @@
 import React from "react";
-import Grid from "@material-ui/Grid";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from '@material-ui/core/Toolbar';
+import { Typography } from "@material-ui/core";
 
 const NavBar = () => {
   return (
-    <div>
-      <Grid container direction="row" justify="center">
-        <Grid item xs={6}>
-          Woot
-        </Grid>
-      </Grid>
-    </div>
+    <AppBar
+    position="static">
+      <Toolbar>
+        <Typography>
+          Welcome
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 export default NavBar;

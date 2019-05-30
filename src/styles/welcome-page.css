@@ -7,7 +7,6 @@ body{
   margin: 0;
 }
 #header{
-  background-image: url("../images/foodbackground.jpeg");
   background-size: cover;
   background-attachment: fixed;
   padding: 25vh 0 25vh;
