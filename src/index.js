@@ -36,6 +36,7 @@ function SimpleSelect() {
     city: ""
   });
 
+  const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
     setLabelWidth(150);
@@ -50,7 +51,7 @@ function SimpleSelect() {
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel htmlFor="outlined-city-simple">City</InputLabel>
+      <InputLabel ref={inputLabel} htmlFor="outlined-city-simple">City</InputLabel>
       <Select
         value={values.city}
         onChange={handleChange}
@@ -87,6 +88,7 @@ ReactDOM.render(
           <IconButton color="white" aria-label="Search">
             <SearchIcon />
           </IconButton>
+          <br />
           <br />
           <SimpleSelect />
         </div>
