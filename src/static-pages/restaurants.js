@@ -1,5 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 import Layout from "../components/layout";
 import Restaurant from "../components/restaurant";
@@ -40,7 +42,7 @@ var listOfRestaurants = [
 const generateRestaurantList = () =>
   listOfRestaurants.map(function(restaurant, index) {
     return (
-      <Grid item key={index} style={{ border: "2px solid black", padding:"0 2rem 0 2rem" }}>
+      <Grid item key={index} style={{ borderBottom: "2px solid", padding:"0 2rem 0 2rem" }}>
         <Restaurant
           name={restaurant.name}
           photoFileName={restaurant.photoFileName}
@@ -51,6 +53,8 @@ const generateRestaurantList = () =>
           openingHour={restaurant.openingHour}
           closingHour={restaurant.closingHour}
         />
+        <Link to="/menu">Gang gang</Link>
+        <Button component={Link} variant="contained" color="primary" to="/menu">View Menu</Button>
       </Grid>
     );
   });
