@@ -1,17 +1,29 @@
 import React from "react";
+import StarIcon from "@material-ui/icons/StarRateSharp";
 
+function generateStarRating(rating) {
+  if (rating === 0)
+    return <p>0 stars</p>
+  var stars = [];
+  for (var i = 0; i < rating && i < 6; i++) {
+    stars.push(<StarIcon />);
+  }
+  return stars;
+}
 
-const Restaurant = (restaurant) => (
+const Restaurant = (props) => (
   <div className="Restaurants">
     <div>
-      <h2>{ restaurant.name }</h2>
-      <img src="../images/pizzarestaurant.jpg" height="400" width="600" />
+      <h2>{ props.name }</h2>
+      <img src={require("../images/" + props.photoFileName)} alt={props.name} height="400" width="600" />
       <br />
-      <img src="../images/fivestars.png" height="45" width="300" />
-      <p>Food: { restaurant.foods }</p>
-      <p>Price Range: { restaurant.priceRange }</p>
-      <p>Address: { restaurant.address }</p>
-      <p>Open From { restaurant.openingHour } - { restaurant.closingHour }</p>
+      { 
+        generateStarRating(props.rating)
+      }
+      <p>Food: { props.foods }</p>
+      <p>Price Range: { props.priceRange }</p>
+      <p>Address: { props.address }</p>
+      <p>Open From { props.openingHour } - { props.closingHour }</p>
     </div>
   </div>
 );
