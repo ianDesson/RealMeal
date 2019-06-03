@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 import {
   FormControl,
@@ -55,10 +57,11 @@ function SimpleSelect() {
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel ref={inputLabel} htmlFor="outlined-city-simple">
+      <InputLabel ref={inputLabel} htmlFor="outlined-city-simple" style={{paddingTop:"0.5rem"}}>
         City
       </InputLabel>
       <Select
+        style={{marginTop:"0.5rem"}}
         value={values.city}
         onChange={handleChange}
         input={
@@ -81,35 +84,34 @@ function SimpleSelect() {
 }
 
 function App() {
+  const classes = useStyles();
   return (
     <div id="container">
     <div id="header">
       <img src={Logo} height="300" width="300" alt="logo" />
       <div>
-        <input
-          id="search"
-          type="textarea"
-          placeholder="Search for a restaurant..."
+        <TextField
+          id="SearchBar"
+          label="Search for a Restaurant"
+          placeholder=""
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          style={{fontSize:"2.5rem"}}
         />
+        <SimpleSelect />
         <Link to="/restaurants">
           <IconButton color="white" aria-label="Search">
             <SearchIcon />
           </IconButton>
         </Link>
         <br />
+        <Button className={classes.button}>Breakfast</Button>        
+        <Button className={classes.button}>Lunch</Button>
+        <Button className={classes.button}>Dinner</Button>
+        <Button className={classes.button}>Take-out</Button>
+        <Button className={classes.button}>Drinks</Button>
         <br />
-        <SimpleSelect />
-      </div>
-    </div>
-    <div>
-      <h1>▼</h1>
-      <div>
-        <button class="mealtypes">Breakfast</button>
-        <button class="mealtypes">Lunch</button>
-        <button class="mealtypes">Dinner</button>
-        <br />
-        <button class="mealtypes">Take-out</button>
-        <button class="mealtypes">Drinks</button>
       </div>
     </div>
   </div>
