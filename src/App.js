@@ -101,7 +101,7 @@ function App() {
         />
         <SimpleSelect />
         <Link to="/restaurants">
-          <IconButton color="white" aria-label="Search">
+          <IconButton color="white" aria-label="Search" style={{marginTop:"1.1rem"}}>
             <SearchIcon />
           </IconButton>
         </Link>
