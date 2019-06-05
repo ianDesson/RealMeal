@@ -6,7 +6,7 @@ function generateStarRating(rating) {
     return <p>0 stars</p>
   var stars = [];
   for (var i = 0; i < rating && i < 6; i++) {
-    stars.push(<StarIcon />);
+    stars.push(<StarIcon style={{width:"2rem", height:"2rem"}}/>);
   }
   return stars;
 }

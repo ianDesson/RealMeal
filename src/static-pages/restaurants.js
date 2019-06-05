@@ -53,7 +53,7 @@ const generateRestaurantList = (props) =>
           openingHour={restaurant.openingHour}
           closingHour={restaurant.closingHour}
         />
-        <Button style={{marginBottom:"0.5rem"}} component={Link} variant="contained" color="primary" to={"/menu/"+restaurant.name}>View Menu</Button>
+        <Button style={{marginBottom:"0.5rem",marginTop:"0.5rem", width:"15rem"}} component={Link} variant="contained" color="primary" to={"/menu/"+restaurant.name}>View Menu</Button>
       </Grid>
     );
   });
