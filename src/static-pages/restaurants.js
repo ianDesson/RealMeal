@@ -53,7 +53,7 @@ const generateRestaurantList = (props) =>
           openingHour={restaurant.openingHour}
           closingHour={restaurant.closingHour}
         />
-        <Button component={Link} variant="contained" color="primary" to={"/menu/"+restaurant.name}>View Menu</Button>
+        <Button style={{marginBottom:"0.5rem"}} component={Link} variant="contained" color="primary" to={"/menu/"+restaurant.name}>View Menu</Button>
       </Grid>
     );
   });
@@ -61,7 +61,7 @@ const generateRestaurantList = (props) =>
 const Restaurants = () => (
   <Layout>
     <Grid container direction="column" align="center">
-      <h1>Restaurants</h1>
+      <h1 style={{fontSize:"4rem", marginBottom:0}}>Restaurants</h1>
       {generateRestaurantList()}
     </Grid>
   </Layout>

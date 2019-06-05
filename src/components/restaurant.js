@@ -20,10 +20,13 @@ const Restaurant = (props) => (
       { 
         generateStarRating(props.rating)
       }
-      <p>Food: { props.foods }</p>
-      <p>Price Range: { props.priceRange }</p>
-      <p>Address: { props.address }</p>
-      <p>Open From { props.openingHour } - { props.closingHour }</p>
+      <p><b>Food</b>: { props.foods }
+      <br />
+      <b>Price Range</b>: { props.priceRange }
+      <br />
+      <b>Address</b>: { props.address }
+      <br />
+      <b>Open From</b>: { props.openingHour } - { props.closingHour }</p>
     </div>
   </div>
 );
