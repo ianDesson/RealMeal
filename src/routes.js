@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 
 import App from './App';
 import Restaurants from './static-pages/restaurants';
@@ -9,7 +9,7 @@ import Menu from './static-pages/menu';
 * Defines the Routing for the app
 */
 const Routes = () => (
-  <BrowserRouter>
+  <Switch>
   {
     // The exact keyword is used to denote the default/index/welcome page
     // The path prop to denotes the url path
@@ -17,8 +17,8 @@ const Routes = () => (
   }
     <Route exact path="/" component={App} />
     <Route path="/restaurants" component={Restaurants} />
-    <Route path="/menu" component={Menu} />
-  </BrowserRouter>
+    <Route path="/menu/:id" component={Menu} />
+  </Switch>
 )
 
 export default Routes;

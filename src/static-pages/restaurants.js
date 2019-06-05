@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 
 import Layout from "../components/layout";
 import Restaurant from "../components/restaurant";
@@ -39,7 +39,7 @@ var listOfRestaurants = [
   }
 ];
 
-const generateRestaurantList = () =>
+const generateRestaurantList = (props) =>
   listOfRestaurants.map(function(restaurant, index) {
     return (
       <Grid item key={index} style={{ borderBottom: "2px solid", padding:"0 2rem 0 2rem" }}>
@@ -53,8 +53,7 @@ const generateRestaurantList = () =>
           openingHour={restaurant.openingHour}
           closingHour={restaurant.closingHour}
         />
-        <Link to="/menu">Gang gang</Link>
-        <Button component={Link} variant="contained" color="primary" to="/menu">View Menu</Button>
+        <Button component={Link} variant="contained" color="primary" to={"/menu/"+restaurant.name}>View Menu</Button>
       </Grid>
     );
   });
