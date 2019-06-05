@@ -2,13 +2,13 @@ import React from "react";
 import clsx from "clsx";
 
 import Grid from "@material-ui/core/Grid";
-import Snackbar from "@material-ui/core/Snackbar";
-import SnackbarContent from "@material-ui/core/SnackbarContent";
+import { SnackbarProvider, withSnackbar } from "notistack";
 import { makeStyles } from "@material-ui/core/styles";
 
 import IconButton from "@material-ui/core/IconButton";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import CloseIcon from "@material-ui/icons/Close";
-import DeleteIcon from "@material-ui/icons/Delete";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 import green from "@material-ui/core/colors/green";
@@ -21,50 +21,46 @@ const menuDetails = [
   {
     name: "Marc's Pizzeria",
     menu: [
-      ["small pizza", 8],
-      ["medium pizza", 10],
-      ["large pizza", 12],
-      ["small sub", 5],
-      ["medium sub", 6],
-      ["large sub", 7],
-      ["soft drinks", 2]
+      {itemName:"small pizza",itemPrice: 8},
+      {itemName:"medium pizza",itemPrice: 10},
+      {itemName:"large pizza",itemPrice: 12},
+      {itemName:"small sub",itemPrice: 5},
+      {itemName:"medium sub",itemPrice: 6},
+      {itemName:"large sub",itemPrice: 7},
+      {itemName:"soft drinks",itemPrice: 2}
     ]
   },
   {
     name: "Ian's Cafe",
     menu: [
-      ["small coffee", 3],
-      ["medium coffee", 4],
-      ["large coffee", 5],
-      ["small sandwich", 4],
-      ["medium sandwich", 5],
-      ["small sandwich", 6]
+      {itemName:"small coffee",itemPrice: 3},
+      {itemName:"medium coffee",itemPrice: 4},
+      {itemName:"large coffee",itemPrice: 5},
+      {itemName:"small sandwich",itemPrice: 4},
+      {itemName:"medium sandwich",itemPrice: 5},
+      {itemName:"small sandwich",itemPrice: 6}
     ]
   },
   {
     name: "Chris's Bar",
     menu: [
-      ["nachos", 6],
-      ["burrito", 6],
-      ["wings", 7],
-      ["small sub", 5],
-      ["medium sub", 6],
-      ["large sub", 7]
+      {itemName:"nachos", itemPrice: 6},
+      {itemName:"burrito",itemPrice: 6},
+      {itemName:"wings",itemPrice: 7},
+      {itemName:"small sub",itemPrice: 5},
+      {itemName:"medium sub",itemPrice: 6},
+      {itemName:"large sub",itemPrice: 7}
     ]
   }
 ];
 
-const variantIcon = {
-  success: CheckCircleIcon,
-  delete: DeleteIcon
-};
 
 const useStyles = makeStyles(theme => ({
   success: {
-    backgroundColor: green[600]
+    backgroundColor: '#43a047'
   },
-  delete: {
-    backgroundColor: theme.palette.error.dark
+  remove: {
+    backgroundColor: '#d32f2f'
   },
   icon: {
     fontSize: 20
@@ -79,57 +75,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MySnackbarContentWrapper(props) {
-  const classes = useStyles();
-  const { className, message, onClose, variant, ...other } = props;
-  const Icon = variantIcon[variant];
-
-  return (
-    <SnackbarContent
-      className={clsx(classes[variant], className)}
-      aria-describedby="client-snackbar"
-      message={
-        <span id="client-snackbar" className={classes.message}>
-          <Icon className={clsx(classes.icon, classes.iconVariant)} />
-          {message}
-        </span>
-      }
-      action={[
-        <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
-          onClick={onClose}
-        >
-          <CloseIcon className={classes.icon} />
-        </IconButton>
-      ]}
-      {...other}
-    />
-  );
-}
+const buttons = [
+  { variant: 'add', message: 'Added to Cart' },
+  { variant: 'remove', message: 'Removed from Cart' }
+]
 
 const Menu = props => {
   const { id } = props.match.params;
+  console.log(id);
 
-  const [open, setOpen] = React.useState(false);
+  var shoppingCart = props.shoppingCart;
 
-  function handleClick() {
-    setOpen(true);
-  }
+  const handleClickAdd = () => {
+    props.enqueueSnackBar("Added to Cart");
+  };
 
-  function handleClose(event, reason) {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClickVariant = variant => {
+    props.enqueueSnackBar("Removed from Cart", { variant });
+  };
 
-    setOpen(false);
-  }
-
-  const MenuItem = restaurantName => {
+  const MenuItem = () => {
     var menuIndex = 0;
     for (var i = 0; i < menuDetails.length; i++) {
-      if (menuDetails[i].name === restaurantName) menuIndex = i;
+      if (menuDetails[i].name === id) menuIndex = i;
     }
 
     return menuDetails[menuIndex].menu.map(function(menuItem, index) {
@@ -137,13 +105,21 @@ const Menu = props => {
         <Grid
           container
           width="30%"
+          alignItems="center"
           direction="row"
-          justify="space-between"
+          justify="space-around"
           className="menu-item"
         >
+          <h3 style={{ textTransform: "capitalize" }}>{menuItem.itemName}</h3>
+          <h3 style={{ margin: "0 auto" }}>{"$" + menuItem.itemPrice}</h3>
           <div>
-            <h3 style={{ textTransform: "capitalize" }}>{menuItem[0]}</h3>
-            <h3>{"$" + menuItem[1]}</h3>
+            <IconButton onClick={handleClickAdd}>
+              <AddCircleIcon />
+            </IconButton>
+            <Typography />
+            <IconButton onClick={handleClickVariant("warning")}>
+              <RemoveCircleIcon />
+            </IconButton>
           </div>
         </Grid>
       );
@@ -152,19 +128,21 @@ const Menu = props => {
 
   return (
     <Layout>
-      <Grid container direction="column" align="center">
-        <div id="jumbotron">
-          <Typography color="secondary" variant="h1">
-            {id}
-          </Typography>
-        </div>
-        <Grid container direction="column" style={{ width: "30%" }}>
-          <h1>Menu</h1>
-          <MenuItem restaurantName={id} />
+      <SnackbarProvider maxSnack={3}>
+        <Grid container direction="column" align="center">
+          <div id="jumbotron">
+            <Typography color="secondary" variant="h1">
+              {id}
+            </Typography>
+          </div>
+          <Grid container direction="column" style={{ width: "30%" }}>
+            <h1>Menu</h1>
+            <MenuItem restaurantName={id} />
+          </Grid>
         </Grid>
-      </Grid>
+      </SnackbarProvider>
     </Layout>
   );
 };
 
-export default Menu;
+export default withSnackbar(Menu);
