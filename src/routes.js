@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 import App from "./App";
 import Restaurants from "./static-pages/restaurants";
 import Menu from "./static-pages/menu";
-import Cart from "./static-pages/cart";
 
 class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
@@ -30,7 +29,6 @@ const Routes = () => (
       <Route exact path="/" component={App} />
       <Route path="/restaurants" component={Restaurants} />
       <Route path="/menu/:id" component={Menu} />
-      <Route path="/cart" component={Cart} />
     </ScrollToTop>
   </Switch>
 );
