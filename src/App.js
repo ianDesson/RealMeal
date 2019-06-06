@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import {
   FormControl,
@@ -17,8 +17,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import Logo from "./images/logo-512x512.png";
 
 /*
-* Defines styles for dropdown box 
-*/
+ * Defines styles for dropdown box
+ */
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -34,8 +34,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 /*
-* Generates dropdown box containing Ottawa, Toronto and Montreal
-*/
+ * Generates dropdown box containing Ottawa, Toronto and Montreal
+ */
 function SimpleSelect() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
@@ -57,11 +57,15 @@ function SimpleSelect() {
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel ref={inputLabel} htmlFor="outlined-city-simple" style={{paddingTop:"0.5rem"}}>
+      <InputLabel
+        ref={inputLabel}
+        htmlFor="outlined-city-simple"
+        style={{ paddingTop: "0.5rem" }}
+      >
         City
       </InputLabel>
       <Select
-        style={{marginTop:"0.5rem"}}
+        style={{ marginTop: "0.5rem" }}
         value={values.city}
         onChange={handleChange}
         input={
@@ -87,34 +91,48 @@ function App() {
   const classes = useStyles();
   return (
     <div id="container">
-    <div id="header">
-      <img src={Logo} height="300" width="300" alt="logo" />
-      <div>
-        <TextField
-          id="SearchBar"
-          label="Search for a Restaurant"
-          placeholder=""
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-          style={{fontSize:"2.5rem"}}
-        />
-        <SimpleSelect />
-        <Link to="/restaurants">
-          <IconButton color="white" aria-label="Search" style={{marginTop:"1.1rem"}}>
-            <SearchIcon />
-          </IconButton>
-        </Link>
-        <br />
-        <Button className={classes.button}>Breakfast</Button>        
-        <Button className={classes.button}>Lunch</Button>
-        <Button className={classes.button}>Dinner</Button>
-        <Button className={classes.button}>Take-out</Button>
-        <Button className={classes.button}>Drinks</Button>
-        <br />
+      <div id="header">
+        <img src={Logo} height="300" width="300" alt="logo" />
+        <div>
+          <TextField
+            id="SearchBar"
+            label="Search for a Restaurant"
+            placeholder=""
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+            style={{ fontSize: "2.5rem" }}
+          />
+          <SimpleSelect />
+          <Link to="/restaurants">
+            <IconButton
+              color="white"
+              aria-label="Search"
+              style={{ marginTop: "1.1rem" }}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Link>
+          <br />
+          <Link to="/restaurants">
+            <Button className={classes.button}>Breakfast</Button>
+          </Link>
+          <Link to="/restaurants">
+            <Button className={classes.button}>Lunch</Button>
+          </Link>
+          <Link to="/restaurants">
+            <Button className={classes.button}>Dinner</Button>
+          </Link>
+          <Link to="/restaurants">
+            <Button className={classes.button}>Take-out</Button>
+          </Link>
+          <Link to="/restaurants">
+            <Button className={classes.button}>Drinks</Button>
+          </Link>
+          <br />
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 
