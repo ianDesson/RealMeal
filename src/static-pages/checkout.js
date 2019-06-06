@@ -11,14 +11,6 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 
-/*
-            <TextField
-              id="standard-with-placeholder"
-              label="With placeholder"
-              placeholder="Placeholder"
-              margin="normal"
-            />
-*/
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -165,6 +157,9 @@ const Checkout = (props) => {
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             <h2>Cost</h2>
+            {
+              //Here's all the cost stuff
+            }
             <Grid container spacing={3}>
               <Grid item xs><p>Subtotal:</p>{props.cost}</Grid>
               <Grid item xs><p>Tax:</p>{props.cost*0.13}</Grid>
@@ -173,6 +168,9 @@ const Checkout = (props) => {
           </Paper>
         </Grid>
         <Grid item xs>
+          {
+            //WHY ISN'T THIS BUTTON ALIGNING ACH
+          }
           <Button variant="contained" color="primary" className={classes.button} marginLeft='2rem'> Confirm Purchase </Button>
         </Grid>
       </Grid>
