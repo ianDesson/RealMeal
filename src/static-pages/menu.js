@@ -1,17 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
+import Button from "@material-ui/core/Button";
 
+import green from "@material-ui/core/colors/green";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { Typography } from "@material-ui/core";
-import green from "@material-ui/core/colors/red";
+import {
+  Typography,
+  createMuiTheme,
+  MuiThemeProvider
+} from "@material-ui/core";
 
 import Layout from "../components/layout";
 import "../styles/menu.css";
@@ -52,6 +58,12 @@ const menuDetails = [
     ]
   }
 ];
+
+const greenTheme = createMuiTheme({
+  palette: {
+    primary: { main: green[500] }
+  }
+});
 
 var shoppingCart = [];
 var total = 0;
@@ -97,12 +109,14 @@ const Menu = props => {
           <h3 style={{ textTransform: "capitalize" }}>{menuItem.itemName}</h3>
           <h3 style={{ margin: "0 auto" }}>{"$" + menuItem.itemPrice}</h3>
           <div>
-            <IconButton
-              color={green[500]}
-              onClick={() => handleClickAdd(menuItem)}
-            >
-              <AddCircleIcon />
-            </IconButton>
+            <MuiThemeProvider theme={greenTheme}>
+              <IconButton
+                color="primary"
+                onClick={() => handleClickAdd(menuItem)}
+              >
+                <AddCircleIcon />
+              </IconButton>
+            </MuiThemeProvider>
             <Typography />
             <IconButton
               color="primary"
@@ -149,14 +163,23 @@ const Menu = props => {
         );
       });
       elements.push(
-        <Grid
-          container
-          direction="row"
-          alignItems="center"
-          justify="center"
-          className="cart-item-border"
-        >
-          <h3>{"SubTotal: $" + total}</h3>
+        <Grid container direction="column" alignItems="center">
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+            justify="center"
+            className="cart-item-border"
+          >
+            <h3>{"SubTotal: $" + total}</h3>
+          </Grid>
+          <MuiThemeProvider theme={greenTheme}>
+            <Link to={{ pathname:"/checkout", state: {cost: total} }}>
+              <Button variant="outlined" color="primary">
+                Proceed To Checkout
+              </Button>
+            </Link>
+          </MuiThemeProvider>
         </Grid>
       );
 

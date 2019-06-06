@@ -29,7 +29,7 @@ const NavBar = () => {
           <Link to="/">
             <Avatar alt="RM" src={require("../images/logo-512x512.png")} />
           </Link>
-          <Typography className={classes.title}>RealMeal</Typography>
+          <Typography>RealMeal</Typography>
         </Toolbar>
       </AppBar>
     </div>
