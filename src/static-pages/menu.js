@@ -87,7 +87,10 @@ const Menu = props => {
   };
 
   const handleClickRemove = item => {
-    shoppingCart[shoppingCart.indexOf(item)].count--;
+    var index = shoppingCart.indexOf(item);
+    shoppingCart[index].count--;
+    if ( shoppingCart[index].count <= 0)
+      shoppingCart.splice(index, 1);
   };
 
   const MenuItem = () => {
